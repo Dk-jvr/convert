@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  python-service:
+    build:
+      context: ./python-app
+      dockerfile: Dockerfile
+    container_name: python_service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - go-service
+
+  go-service:
+    build:
+      context: ./go-app
+      dockerfile: Dockerfile
+    container_name: go_service
+    ports:
+      - "8080:8080"
